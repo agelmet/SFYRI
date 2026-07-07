@@ -61,6 +61,10 @@
   }
   .eyebrow::before{content:"";width:26px;height:1px;background:var(--berry);opacity:.6}
 
+  /* ============ LOGO GLOBAL STYLES ============ */
+  .logo-img { height: 70px; width: auto; object-fit: contain; }
+  @media(max-width: 760px) { .logo-img { height: 55px; } }
+
   /* ============ PRELOADER ============ */
   #loader{
     position:fixed;inset:0;z-index:2000;background:var(--paper);
@@ -68,24 +72,11 @@
     transition:opacity 0.5s var(--ease), visibility 0.5s;
   }
   #loader.done{opacity:0;visibility:hidden;}
-  #loader svg{width:80px;height:80px;overflow:visible;}
-  .loader-tooth{
-    stroke:var(--berry);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;fill:none;
-    stroke-dasharray:250;stroke-dashoffset:250;
-    animation:drawLoader 1s ease-in-out forwards;
+  #loader .logo-img {
+    height: 160px; opacity: 0; transform: scale(0.9);
+    animation: popLoader 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  .loader-smile{
-    stroke:var(--berry);stroke-width:3.5;stroke-linecap:round;fill:none;
-    stroke-dasharray:60;stroke-dashoffset:60;
-    animation:drawLoader 0.6s ease-out 0.6s forwards;
-  }
-  @keyframes drawLoader{to{stroke-dashoffset:0;}}
-  #loader .ldr-name{
-    font-family:var(--serif);font-size:1.6rem;letter-spacing:0.04em;color:var(--ink);
-    opacity:0;transform:translateY(10px);
-    animation:fadeLoader 0.6s ease-out 0.8s forwards;
-  }
-  @keyframes fadeLoader{to{opacity:1;transform:translateY(0);}}
+  @keyframes popLoader { to { opacity: 1; transform: scale(1); } }
 
   /* ============ NAV ============ */
   header{
@@ -100,10 +91,6 @@
   .nav{display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:12px; transition: transform 0.4s var(--ease);}
   .brand:hover{transform: scale(1.03);}
-  .brand svg{width:34px;height:34px;flex:none}
-  .brand-text{line-height:1.05}
-  .brand-name{font-family:var(--serif);font-size:1.18rem;font-weight:600;letter-spacing:.02em;color:var(--ink);}
-  .brand-sub{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
   .navlinks{display:flex;align-items:center;gap:clamp(16px,2vw,36px)}
   .navlinks a.lk{
     font-size:.8rem;font-weight:600;letter-spacing:.04em;position:relative;
@@ -178,48 +165,32 @@
     min-height: 100svh;
     display: flex;
     align-items: center;
-    background: var(--paper);
+    background: url('https://raw.githubusercontent.com/agelmet/SFYRI/36d70c41b3a8b41747b2fa2fbd422be85864d2f1/unnamed-2.png') no-repeat center center;
+    background-size: cover;
     overflow: hidden;
   }
   .hero::before {
-    content: ""; position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw;
-    background: radial-gradient(circle, rgba(160,51,109,0.06), transparent 60%); border-radius: 50%; z-index: 0; pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(251,248,245, 0.95) 0%, rgba(251,248,245, 0.8) 45%, rgba(251,248,245, 0) 100%);
+    z-index: 1;
   }
-  .hero::after {
-    content: ""; position: absolute; bottom: 0; right: 0; width: 40vw; height: 40vw;
-    background: radial-gradient(circle, rgba(198,106,156,0.05), transparent 60%); border-radius: 50%; z-index: 0; pointer-events: none;
+  @media(max-width: 980px) {
+    .hero::before {
+       background: rgba(251,248,245, 0.85);
+    }
   }
   .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(40px, 6vw, 80px);
-    align-items: center;
+    display: block;
     width: 100%;
     position: relative;
     z-index: 2;
-    padding-top: 120px;
+    padding-top: 140px;
     padding-bottom: 80px;
   }
-  .hero-image {
-    position: relative;
-    width: 100%;
-    animation: fadeImg 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  @keyframes fadeImg { from { opacity: 0; transform: scale(0.96) translateX(-20px); } to { opacity: 1; transform: none; } }
-  .hero-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: var(--r);
-    box-shadow: 0 30px 60px -20px rgba(160,51,109,0.25);
-    position: relative;
-    z-index: 2;
-  }
-  .hero-image::after {
-    content: ""; position: absolute; inset: -20px; border: 2px solid var(--berry-wash); border-radius: 30px; z-index: 1; transform: translate(14px, 14px);
-  }
   .hero-inner {
-    max-width: 600px;
+    max-width: 650px;
     animation: fadeText 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
     opacity: 0;
   }
@@ -466,9 +437,9 @@
   .faq-q{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--serif);font-size:1.35rem;font-weight:600;transition:color .3s;}
   .faq-q:hover{color:var(--berry);}
   .faq-q .pm{width:26px;height:26px;flex:none;position:relative}
-  .faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;background:var(--berry);border-radius:2px;transition:.5s var(--ease)}
-  .faq-q .pm::before{top:50%;left:0;width:100%;height:2px;transform:translateY(-50%)}
-  .faq-q .pm::after{left:50%;top:0;width:2px;height:100%;transform:translateX(-50%)}
+  .faq-q .pm::before,.faq-q .pm::after{content:"absolute";background:var(--berry);border-radius:2px;transition:.5s var(--ease)}
+  .faq-q .pm::before{content:"";top:50%;left:0;width:100%;height:2px;transform:translateY(-50%);position:absolute;}
+  .faq-q .pm::after{content:"";left:50%;top:0;width:2px;height:100%;transform:translateX(-50%);position:absolute;}
   .faq-item.open .faq-q .pm::after{transform:translateX(-50%) scaleY(0)}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
   .faq-a p{padding-bottom:26px;color:var(--ink-soft);font-weight:400;font-size:1.02rem;}
@@ -506,9 +477,8 @@
   footer{background:#1d161b;color:rgba(255,255,255,.75);padding:60px 0 30px}
   .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
   .foot-brand{max-width:34ch}
-  .foot-brand .fb{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-  .foot-brand .fb svg{width:40px;height:40px}
-  .foot-brand .fb b{font-family:var(--serif);font-size:1.3rem;color:#fff;font-weight:600}
+  .foot-brand .fb{margin-bottom:16px}
+  .foot-brand .logo-img { height: 80px; display: block; }
   .foot-brand p{font-size:.95rem;font-weight:400}
   .foot-links{display:flex;gap:clamp(30px,6vw,80px);flex-wrap:wrap}
   .foot-col h5{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:16px}
@@ -541,8 +511,6 @@
 
   /* RESPONSIVE */
   @media(max-width:980px){
-    .hero-grid{grid-template-columns:1fr; padding-top:100px;}
-    .hero-image::after{inset:-14px;}
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:46px}
     .faq-grid{display:flex;flex-direction:column-reverse;gap:46px;}
     .pillars{grid-template-columns:1fr}
@@ -570,24 +538,14 @@
 </head>
 <body>
 
-<!-- PRELOADER -->
 <div id="loader">
-  <svg viewBox="0 0 100 100" aria-hidden="true">
-    <path class="loader-tooth" d="M30 35 C30 20 40 15 50 15 C60 15 70 20 70 35 C70 50 65 60 65 75 C65 85 55 85 55 75 C55 65 50 60 45 75 C45 85 35 85 35 75 C35 60 30 50 30 35 Z"/>
-    <path class="loader-smile" d="M40 45 Q50 56 60 45"/>
-  </svg>
-  <div class="ldr-name serif">Αλεξάνδρα Σφυρή</div>
+  <img class="logo-img" src="https://github.com/agelmet/SFYRI/blob/main/Alexandra_logo.png?raw=true" alt="Αλεξάνδρα Σφυρή">
 </div>
 
-<!-- HEADER -->
 <header id="header">
   <div class="wrap nav">
     <a href="#top" class="brand" aria-label="Αλεξάνδρα Σφυρή — Αρχική">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><path class="tlogo" d="M50 14c-13 0-22 7-26 7s-9-4-12-2c-4 3-2 14 1 28 3 13 5 39 13 39 6 0 6-20 11-20s5 20 11 20c8 0 10-26 13-39 3-14 5-25 1-28-3-2-8 2-12 2s-13-7-26-7z" fill="#a0336d"/></svg>
-      <span class="brand-text">
-        <span class="brand-name" data-el="Αλεξάνδρα Σφυρή" data-en="Alexandra Sfyri">Αλεξάνδρα Σφυρή</span>
-        <span class="brand-sub" data-el="DDS · Εμφυτευματολογία" data-en="DDS · Implantology">DDS · Εμφυτευματολογία</span>
-      </span>
+      <img class="logo-img" src="https://github.com/agelmet/SFYRI/blob/main/Alexandra_logo.png?raw=true" alt="Αλεξάνδρα Σφυρή Logo">
     </a>
     <nav class="navlinks">
       <a class="lk" href="#about" data-el="Η Οδοντίατρος" data-en="The Dentist">Η Οδοντίατρος</a>
@@ -608,7 +566,6 @@
   </div>
 </header>
 
-<!-- MOBILE NAV -->
 <div class="mobnav" id="mobnav">
   <button class="mob-close" id="mobClose" aria-label="Κλείσιμο μενού"></button>
   <a href="#about" data-el="Η Οδοντίατρος" data-en="The Dentist">Η Οδοντίατρος</a>
@@ -619,12 +576,8 @@
   <a href="tel:+306973061032" class="mob-cta" data-el="Κλείστε Ραντεβού" data-en="Book Appointment">Κλείστε Ραντεβού</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <div class="wrap hero-grid">
-    <div class="hero-image">
-      <img src="https://raw.githubusercontent.com/agelmet/SFYRI/36d70c41b3a8b41747b2fa2fbd422be85864d2f1/unnamed-2.png" alt="Σύγχρονο οδοντιατρείο Αλεξάνδρα Σφυρή">
-    </div>
     <div class="hero-inner">
       <span class="eyebrow" data-el="Χειρουργός Οδοντίατρος · NYU" data-en="Oral Surgeon · NYU">Χειρουργός Οδοντίατρος · NYU</span>
       <h1 data-el="Η επιστήμη που <em>χαρίζει</em> αυτοπεποίθηση." data-en="The science that <em>restores</em> confidence.">Η επιστήμη που <em>χαρίζει</em> αυτοπεποίθηση.</h1>
@@ -648,7 +601,6 @@
   </div>
 </section>
 
-<!-- PROFESSIONAL MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marquee">
@@ -659,7 +611,6 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <section class="about pad" id="about">
   <div class="wrap about-grid">
     <div class="about-photo reveal">
@@ -685,7 +636,6 @@
   </div>
 </section>
 
-<!-- SERVICES -->
 <section class="pad" id="services">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -747,7 +697,6 @@
   </div>
 </section>
 
-<!-- NYU PHILOSOPHY -->
 <section class="nyu pad" id="nyu">
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0;max-width:none">
@@ -778,7 +727,6 @@
   </div>
 </section>
 
-<!-- GALLERY -->
 <section class="gallery pad">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -797,7 +745,6 @@
   </div>
 </section>
 
-<!-- REVIEWS -->
 <section class="pad" id="reviews">
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:34px">
@@ -831,14 +778,12 @@
 
     <div class="rev-track-wrap reveal d1">
       <div class="rev-track" id="revTrack">
-        <!-- cards injected by JS -->
-      </div>
+        </div>
     </div>
     <p class="rev-hint" data-el="Σύρετε για περισσότερες κριτικές · Η αξιολόγηση γίνεται ανεξάρτητα μέσω της επίσημης σελίδας Google του ιατρείου." data-en="Drag for more reviews · Ratings are submitted independently through the practice's official Google page.">Σύρετε για περισσότερες κριτικές · Η αξιολόγηση γίνεται ανεξάρτητα μέσω της επίσημης σελίδας Google του ιατρείου.</p>
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq pad">
   <div class="wrap faq-grid">
     <div class="faq-list reveal d1">
@@ -867,7 +812,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact pad" id="contact">
   <div class="wrap contact-grid">
     <div class="reveal">
@@ -877,7 +821,7 @@
       <div class="cinfo">
         <a href="https://maps.google.com/?q=Παραδείσου+19,+Νέα+Ιωνία+142+31" target="_blank" rel="noopener">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <span class="tx"><span data-el="Διεύθυνση" data-en="Address">Διεύθυνση</span><b>Παραδείσου 19, 142 31, Νέα Ιωνία</b></span>
+          <span class="tx"><span data-el="Διεύθυνση" data-en="Address">Διεύθυνση</span><b data-el="Παραδείσου 19, 142 31, Νέα Ιωνία" data-en="19 Paradeisou St., 142 31, Nea Ionia">Παραδείσου 19, 142 31, Νέα Ιωνία</b></span>
         </a>
         <a href="tel:+306973061032">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
@@ -900,14 +844,12 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
         <div class="fb">
-          <svg viewBox="0 0 100 100"><path d="M50 14c-13 0-22 7-26 7s-9-4-12-2c-4 3-2 14 1 28 3 13 5 39 13 39 6 0 6-20 11-20s5 20 11 20c8 0 10-26 13-39 3-14 5-25 1-28-3-2-8 2-12 2s-13-7-26-7z" fill="#a0336d"/></svg>
-          <b data-el="Αλεξάνδρα Σφυρή DDS" data-en="Alexandra Sfyri DDS">Αλεξάνδρα Σφυρή DDS</b>
+          <img class="logo-img" src="https://github.com/agelmet/SFYRI/blob/main/Alexandra_logo.png?raw=true" alt="Αλεξάνδρα Σφυρή DDS">
         </div>
         <p data-el="Εξειδικευμένη εμφυτευματολογία & σύγχρονη οδοντιατρική φροντίδα, με πρότυπα εκπαίδευσης από το New York University." data-en="Specialized implantology & modern dental care, built on New York University training.">Εξειδικευμένη εμφυτευματολογία & σύγχρονη οδοντιατρική φροντίδα, με πρότυπα εκπαίδευσης από το New York University.</p>
       </div>
@@ -934,13 +876,11 @@
   </div>
 </footer>
 
-<!-- FLOATING CALL -->
 <a class="fab" id="fab" href="tel:+306973061032">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   <span data-el="Καλέστε μας" data-en="Call us">Καλέστε μας</span>
 </a>
 
-<!-- LIGHTBOX -->
 <div class="lb" id="lb">
   <button class="lb-close" id="lbClose" aria-label="Κλείσιμο"></button>
   <button class="lb-nav lb-prev" id="lbPrev" aria-label="Προηγούμενη"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -1007,19 +947,20 @@
 
   /* ---------- REVIEWS ---------- */
   var reviews=[
-    {n:'Άννα',t:'Από την πρώτη επίσκεψη ένιωσα ασφάλεια και εμπιστοσύνη. Με προσοχή προχωρήσαμε προς το καλύτερο αποτέλεσμα, με κάθε βήμα ξεκάθαρο.',te:'From the very first visit I felt safe and confident. We moved carefully toward the best result, with every step clearly explained.'},
-    {n:'Θανάσης',t:'Ήταν μοναδική εμπειρία! Δεν το περίμενα, καθώς ήταν η πρώτη μου φορά.',te:'It was a unique experience! I didn\'t expect it, since it was my first time.'},
-    {n:'Nata',t:'Εξαιρετική επαγγελματίας με βαθύτατη κατανόηση και εξειδίκευση στο αντικείμενό της. Τη συνιστώ ανεπιφύλακτα!',te:'An outstanding professional with deep understanding and real expertise. I recommend her without reservation!'},
-    {n:'Σοφία',t:'Πολύ ζεστή και προσιτή παρουσία, με επαγγελματισμό και ουσιαστική φροντίδα σε κάθε επίσκεψη. Εμπνέει εμπιστοσύνη.',te:'A very warm and approachable presence, with professionalism and genuine care at every visit. She inspires trust.'},
-    {n:'Αλίκη',t:'Ένιωσα πολύ άνετα, με ασφάλεια και εμπιστοσύνη από την πρώτη στιγμή. Θα συνεχίσω με σιγουριά.',te:'I felt completely at ease, safe and confident from the first moment. I\'ll continue with full confidence.'},
-    {n:'Alexander',t:'Την εμπιστεύομαι απόλυτα. Η προσέγγισή της με βοήθησε να νιώσω πιο σίγουρος. Μια πολύ θετική εμπειρία.',te:'I trust her completely. Her approach helped me feel more confident. A very positive experience.'},
-    {n:'Μαρία',t:'Είχα μια υπέροχη εμπειρία. Έκανα καιρό να αποφασίσω να αναζητήσω βοήθεια, αλλά ήταν η καλύτερη απόφαση. Τη συστήνω ανεπιφύλακτα.',te:'I had a wonderful experience. It took me a while to decide to seek help, but it was the best decision. I recommend her wholeheartedly.'},
-    {n:'Ελευθερία',t:'Εξαιρετική επαγγελματίας, με έκανε να νιώσω άνετα από την πρώτη στιγμή και με βοήθησε ουσιαστικά. Τη συστήνω ανεπιφύλακτα!',te:'An excellent professional who put me at ease from the start and helped me in a meaningful way. Highly recommended!'},
-    {n:'Ηλέκτρα',t:'Εξαιρετική επαγγελματίας, με ενσυναίσθηση — και ο χώρος πολύ άνετος και φιλικός!',te:'An excellent professional with great empathy — and the space is very comfortable and welcoming!'},
-    {n:'Αιμίλιος',t:'Εξαιρετική επαγγελματίας και ταυτόχρονα ζεστός, προσιτός άνθρωπος. Ο χώρος είναι άνετος, προσεγμένος και αποπνέει ηρεμία.',te:'An excellent professional and at the same time a warm, approachable person. The space is comfortable, polished, and calming.'},
-    {n:'Κατερίνα',t:'Πολύ ζεστός άνθρωπος και χώρος. Μου ενέπνευσε εμπιστοσύνη από την πρώτη στιγμή!',te:'A very warm person and space. She inspired my trust from the very first moment!'},
-    {n:'Paola',t:'Υπέροχη επαγγελματίας. Αισθάνθηκα άνετα μαζί της από την πρώτη επίσκεψη. Τη συνιστώ ανεπιφύλακτα.',te:'A wonderful professional. I felt comfortable with her from the first visit. I recommend her without hesitation.'}
+    {n:'ir gth', t:'Η γιατρός είναι πολύ λεπτομερής και εξαιρετικά καταρτισμένη ώστε να μπορεί να προσφέρει λύσεις στα προβλήματα που έχουν προκύψει στα δόντια ανά τα χρόνια, σε πολύ ικανοποιητικά κόστη. Πέρα απ\' την ίδια που είναι εξαιρετική, το ιατρείο είναι άριστο και προσβάσιμο σε άτομα που κινούνται με αμαξίδιο και το παρκάρισμα στη περιοχή είναι εύκολο.', te:'The doctor is very detailed and highly trained, able to offer solutions to dental problems that have arisen over the years, at very satisfactory costs. Beyond her being excellent, the clinic is superb, accessible to wheelchair users, and parking in the area is easy.'},
+    {n:'ch kar', t:'Είχα την ευκαιρία να επισκεφτώ το νέο οδοντιατρείο της κυρίας Σφυρή στη Νέα Ιωνία και έμεινα εξαιρετικά ικανοποιημένος από την εμπειρία μου. Από την πρώτη στιγμή που μπήκα στο χώρο, εντυπωσιάστηκα από την καθαριότητα και την μοντέρνα αισθητική του ιατρείου. Η κυρία Σφυρή είναι μια άριστη επαγγελματίας με βαθιά γνώση στο αντικείμενό της. Παρέχει ένα πλήρες φάσμα οδοντιατρικών υπηρεσιών, από καθαρισμό και λεύκανση δοντιών μέχρι πιο εξειδικευμένες θεραπείες και χειρουργικές επεμβάσεις. Κατά την επίσκεψή μου, ένιωσα πως ήμουν σε καλά χέρια, καθώς με ενημέρωσε αναλυτικά για την κατάσταση των δοντιών μου και μου εξήγησε όλες τις διαθέσιμες επιλογές θεραπείας. Αυτό που ξεχωρίζει την κυρία Σφυρή είναι η προσέγγισή της στους ασθενείς. Είναι φιλική, προσιτή και δείχνει πραγματικό ενδιαφέρον για την άνεση και την ευημερία τους. Ο τρόπος με τον οποίο διαχειρίζεται τους φόβους και τις ανησυχίες των ασθενών της είναι πραγματικά αξιέπαινος. Επιπλέον, η τεχνολογία και ο εξοπλισμός που χρησιμοποιεί είναι τελευταίας γενιάς, κάτι που προσφέρει μια αίσθηση ασφάλειας και εμπιστοσύνης. Οι τιμές των υπηρεσιών είναι λογικές και ανταποκρίνονται στην ποιότητα της φροντίδας που παρέχεται. Συνοψίζοντας, συνιστώ ανεπιφύλακτα το οδοντιατρείο της κυρίας Σφυρή σε οποιονδήποτε αναζητά υψηλής ποιότητας οδοντιατρική φροντίδα στη Νέα Ιωνία. Πρόκειται για ένα εξαιρετικό μέρος όπου η υγεία των δοντιών σας βρίσκεται σε άριστα χέρια.', te:'I had the opportunity to visit Dr. Sfyri\'s new dental clinic in Nea Ionia and was extremely satisfied with my experience. From the moment I entered the space, I was impressed by the cleanliness and the modern aesthetics of the clinic. Dr. Sfyri is an excellent professional with deep knowledge in her field. She provides a full range of dental services, from cleaning and teeth whitening to more specialized treatments and surgeries. During my visit, I felt I was in good hands, as she informed me in detail about the condition of my teeth and explained all available treatment options. What distinguishes Dr. Sfyri is her approach to patients. She is friendly, approachable, and shows genuine interest in their comfort and well-being. The way she handles her patients\' fears and concerns is truly commendable. Additionally, the technology and equipment she uses are state-of-the-art, offering a sense of safety and trust. The service prices are reasonable and correspond to the quality of care provided. In summary, I highly recommend Dr. Sfyri\'s dental clinic to anyone seeking high-quality dental care in Nea Ionia. It is an excellent place where your dental health is in the best hands.'},
+    {n:'Iron Stelan', t:'Επαγγελματισμός, γνώση και ανθρώπινη προσέγγιση. Επισκέφθηκα το ιατρείο της κυρίας Σφυρή αρχικά για μια απονεύρωση. Η μεθοδικότητα και η προσοχή που έδωσε κατά τις επισκέψεις μου έκανε θετικότατη εντύπωση. Για τον λόγο αυτό την προτίμησα ξανά όταν χρειάστηκε η εξαγωγή ενός φρονιμίτη. Δεν το μετάνιωσα καθώς παρά την δύσκολη θέση του φρονιμίτη (μεγάλωνε κάθετα στα άλλα δόντια) όλα πήγαν τέλεια. Τέλος, να σημειώσω πως ο χώρος του ιατρείου είναι όμορφος, φιλικος και ανταποκρίνεται απόλυτα στις προδιαγραφές ενός σύγχρονου ιατρείου.', te:'Professionalism, knowledge, and a human approach. I initially visited Dr. Sfyri\'s clinic for a root canal. Her methodical approach and attention during my visits left a very positive impression. For this reason, I chose her again when I needed a wisdom tooth extraction. I didn\'t regret it, because despite the difficult position of the wisdom tooth (growing perpendicularly to the other teeth), everything went perfectly. Finally, I should note that the clinic space is beautiful, friendly, and fully meets the standards of a modern clinic.'},
+    {n:'Γερολυματος Νικήτας', enName: 'Nikitas Gerolymatos', t:'Παρά πολύ καλή οδοντίατρος σου εξηγεί τα πάντα σχολαστική με την δουλειά της και κυρίως επαγγελματίας Ο χώρος άψογος πεντακάθαρος !!! Με κλειστά μάτια μόνο εκεί !!!', te:'Very good dentist, she explains everything to you, meticulous with her work and above all a professional. The space is flawless, spotlessly clean !!! Blindly, only there !!!'},
+    {n:'Δωρα Δαρζ', enName: 'Dora Darz', t:'Ο επαγγελματισμός και η εξυπηρέτηση σε άριστο επίπεδο! Ο χώρος πεντακάθαρος, προσεγμένος κ η Αλεξάνδρα εξαιρετικη!!', te:'Professionalism and service at an excellent level! The space is spotlessly clean, well-cared for, and Alexandra is exceptional!!'},
+    {n:'dwra panagou', t:'Η επίσκεψή μου στο οδοντιατρείο της κα Σφυρή ήταν εξαιρετική από την αρχή μέχρι το τέλος. Η κα Σφυρή ήταν επαγγελματίας και ιδιαίτερα προσεκτική, εξηγώντας κάθε βήμα της διαδικασίας. Ο χώρος ήταν πολύ καθαρός και μοντέρνος, με τελευταίας τεχνολογίας εξοπλισμό. Η εμπειρία μου ήταν απολύτως θετική. Συνιστώ ανεπιφύλακτα το οδοντιατρείο της κα Σφυρή σε όλους!', te:'My visit to Dr. Sfyri\'s dental clinic was excellent from start to finish. Dr. Sfyri was professional and particularly careful, explaining every step of the process. The space was very clean and modern, with state-of-the-art equipment. My experience was absolutely positive. I highly recommend Dr. Sfyri\'s dental clinic to everyone!'},
+    {n:'Karachaliou Anastasia', t:'Λόγω σοβαρών θεμάτων που είχα με τα δόντια μου χρειαζόταν επειγόντως να βρω όχι απλά έναν καλό οδοντίατρο , αλλά έναν εξαιρετικά καταρτισμένο και υπομονετικό επιστήμονα. Και βρήκα την κα Σφυρή με ακριβώς όλα τα στοιχεία που χρειαζόμουν. …More', te:'Due to severe issues I had with my teeth, I urgently needed to find not just a good dentist, but a highly trained and patient scientist. And I found Dr. Sfyri with exactly all the qualities I needed.'},
+    {n:'stella star', t:'Γρήγορη, άμεση,έχω γλιτώσει τα δοντακια μου στην κύρια Αλεξάνδρα! αναλυτική και πριν για το τι θα γίνει αλλά και μετά για την επουλωση και την σωστή συντήρηση!έχω κάνει από σφραγισματα μέχρι ορθοδοντική εργασια με άψογα αποτελέσματα!!! επίσης,το αισθημα σιγουριάς ότι εισαι σε καλα χέρια,Μ εκανε πιο άνετη και χαλαρη!με κλειστά μάτια!!!', te:'Fast, direct, I have saved my teeth thanks to Ms. Alexandra! Detailed both beforehand about what will happen, and afterwards for healing and proper maintenance! I\'ve done everything from fillings to orthodontic work with flawless results!!! Also, the feeling of certainty that you are in good hands made me more comfortable and relaxed! With closed eyes!!!'},
+    {n:'Dimitris', t:'Επισκέφτηκα την οδοντίατρο κ Σφυρή Αλεξάνδρα για εξαγωγη φρονιμίτη, μετά απο έρευνα στη google, και έμεινα απόλυτα ικανοποιημένος απο το αποτέλεσμα. Μεθοδική και επαγγελματίας. Τη συστήνω ανεπιφύλακτα. Επίσης ο χώρος πεντακάθαρος, και σύγχρονος.', te:'I visited dentist Ms. Alexandra Sfyri for a wisdom tooth extraction, after researching on Google, and I was completely satisfied with the result. Methodical and professional. I highly recommend her. Also, the space is spotlessly clean and modern.'},
+    {n:'Agg Bele', t:'Εξαιρετική δουλειά! Έκανα απονεύρωση και καθαρισμό και έμεινα πλήρως ικανοποιημένη. Προσιτές τιμές, πολύ όμορφο περιβαλλον και η Αλεξάνδρα γλυκύτατη. Το συστήνω ανεπιφύλακτα!!!!', te:'Excellent work! I had a root canal and cleaning and was completely satisfied. Affordable prices, very beautiful environment, and Alexandra is super sweet. I highly recommend it!!!!'},
+    {n:'Fidelka Ka', t:'Εξαιρετική γιατρός την συστήνω ανεπιφύλακτα. Βρήκε λύσεις στα προβλήματά μου με τον αποτελεσματικότερο και πιο οικονομικό τρόπο. Καθαρός χώρος με μηχανήματα τελευταίας τεχνολογίας, ιατρικό ήθος και βαθιά κατάρτιση επι του αντικειμένου της. Θα είμαι πάντα ευγνώμων απέναντι στην κυρία Σφυρή.', te:'Excellent doctor, I highly recommend her. She found solutions to my problems in the most effective and affordable way. Clean space with state-of-the-art machinery, medical ethics, and deep expertise in her field. I will always be grateful to Dr. Sfyri.'},
+    {n:'Dimi Del', t:'Η ποιότητα των υπηρεσιών, η καθαριότητα του χώρου καθώς και η φιλική εξυπηρέτηση βρίσκονται σε πολύ υψηλό επίπεδο. Μεγάλο πλεονέκτημα και οι ιδιαίτερα ανταγωνιστικές τιμές. Από τις καλύτερες επαγγελματίες του χώρου', te:'The quality of services, the cleanliness of the space, as well as the friendly service are at a very high level. A big advantage is also the highly competitive prices. One of the best professionals in the field.'}
   ];
+
   var track=document.getElementById('revTrack');
   function starsSVG(){return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>';}
   function buildReviews(){
@@ -1027,13 +968,14 @@
     track.innerHTML='';
     reviews.forEach(function(r){
       var txt = lang==='en' ? r.te : r.t;
+      var name = (lang==='en' && r.enName) ? r.enName : r.n;
       var label = lang==='en' ? 'Verified Google review' : 'Επιβεβαιωμένη κριτική Google';
       var card=document.createElement('div');
       card.className='rcard';
       card.innerHTML=
         '<svg class="qt" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a4 4 0 0 0-4 4v6h6v-6H4a2 2 0 0 1 2-2h4V7zm10 0h-4a4 4 0 0 0-4 4v6h6v-6h-2a2 2 0 0 1 2-2h2V7z"/></svg>'+
         '<p>'+txt+'</p>'+
-        '<div class="who"><div class="av">'+r.n.charAt(0)+'</div><div><b>'+r.n+'</b><span>'+starsSVG()+label+'</span></div></div>';
+        '<div class="who"><div class="av">'+name.charAt(0)+'</div><div><b>'+name+'</b><span>'+starsSVG()+label+'</span></div></div>';
       track.appendChild(card);
     });
   }
