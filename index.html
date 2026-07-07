@@ -62,18 +62,18 @@
   .eyebrow::before{content:"";width:26px;height:1px;background:var(--berry);opacity:.6}
 
   /* ============ LOGO GLOBAL STYLES ============ */
-  .brand { display: flex; align-items: center; gap: 14px; transition: transform 0.4s var(--ease); }
+  .brand { display: flex; align-items: center; gap: 12px; transition: transform 0.4s var(--ease); }
   .brand:hover { transform: scale(1.02); }
-  .logo-img { height: 95px; width: auto; object-fit: contain; transition: height 0.4s var(--ease); }
+  .logo-img { height: 75px; width: auto; object-fit: contain; transition: height 0.4s var(--ease); }
   .brand-text { display: flex; flex-direction: column; justify-content: center; }
-  .brand-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--ink); line-height: 1.1; transition: font-size 0.4s var(--ease); }
-  .brand-desc { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; margin-top: 4px; }
+  .brand-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--ink); line-height: 1.1; transition: font-size 0.4s var(--ease); }
+  .brand-desc { font-family: var(--sans); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); font-weight: 700; margin-top: 4px; }
   
   @media(max-width: 760px) { 
     .brand { gap: 10px; }
-    .logo-img { height: 65px; } 
-    .brand-title { font-size: 1.25rem; }
-    .brand-desc { font-size: 0.55rem; letter-spacing: 0.1em; }
+    .logo-img { height: 50px; } 
+    .brand-title { font-size: 1.05rem; }
+    .brand-desc { font-size: 0.5rem; letter-spacing: 0.1em; }
   }
 
   /* ============ PRELOADER ============ */
@@ -87,13 +87,13 @@
     opacity: 0; transform: scale(0.9);
     animation: popLoader 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  #loader .logo-img { height: 140px; }
-  #loader .brand-title { font-size: 2.4rem; }
-  #loader .brand-desc { font-size: 0.85rem; }
+  #loader .logo-img { height: 110px; }
+  #loader .brand-title { font-size: 1.8rem; }
+  #loader .brand-desc { font-size: 0.8rem; }
   @media(max-width: 760px) {
-    #loader .logo-img { height: 100px; }
-    #loader .brand-title { font-size: 1.8rem; }
-    #loader .brand-desc { font-size: 0.7rem; }
+    #loader .logo-img { height: 80px; }
+    #loader .brand-title { font-size: 1.4rem; }
+    #loader .brand-desc { font-size: 0.65rem; }
   }
   @keyframes popLoader { to { opacity: 1; transform: scale(1); } }
 
@@ -101,17 +101,17 @@
   header{
     position:fixed;top:0;left:0;right:0;z-index:1000;
     transition:background .5s var(--ease),box-shadow .5s,padding .5s var(--ease);
-    padding:18px 0;
+    padding:16px 0;
   }
   header.scrolled{
     background:rgba(251,248,245,.9);backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);box-shadow:0 10px 40px -10px rgba(0,0,0,.06);padding:10px 0;
+    -webkit-backdrop-filter:blur(24px);box-shadow:0 10px 40px -10px rgba(0,0,0,.06);padding:8px 0;
   }
-  header.scrolled .logo-img { height: 75px; }
-  header.scrolled .brand-title { font-size: 1.35rem; }
+  header.scrolled .logo-img { height: 55px; }
+  header.scrolled .brand-title { font-size: 1.1rem; }
   @media(max-width: 760px) {
-    header.scrolled .logo-img { height: 55px; }
-    header.scrolled .brand-title { font-size: 1.15rem; }
+    header.scrolled .logo-img { height: 45px; }
+    header.scrolled .brand-title { font-size: 1rem; }
   }
   .nav{display:flex;align-items:center;justify-content:space-between}
   .navlinks{display:flex;align-items:center;gap:clamp(16px,2vw,36px)}
@@ -433,7 +433,7 @@
   .g5{grid-column:span 4}
   .g6{grid-column:span 4}
 
-  /* REVIEWS */
+  /* REVIEWS (SLIDER & READ MORE) */
   .rev-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:50px}
   .rev-score{display:flex;align-items:center;gap:22px}
   .rev-score .big{font-family:var(--serif);font-size:clamp(3.4rem,7vw,5rem);font-weight:600;line-height:.9;color:var(--berry)}
@@ -441,18 +441,46 @@
   .rev-score .stars svg{width:22px;height:22px;color:#e0a92e}
   .rev-score .sub{font-size:.86rem;color:var(--ink-soft);font-weight:600;}
   .rev-actions{display:flex;flex-wrap:wrap;gap:12px}
+  
   .rev-track-wrap{overflow:hidden;position:relative;margin:0 calc(-1*clamp(20px,5vw,56px)); padding:20px 0 40px;}
-  .rev-track{display:flex;gap:24px;padding:8px clamp(20px,5vw,56px);will-change:transform;cursor:grab}
-  .rev-track.grabbing{cursor:grabbing}
+  .rev-track{
+    display:flex; gap:24px; padding:8px clamp(20px,5vw,56px);
+    overflow-x:auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none; /* Hide scrollbars natively */
+    will-change: transform; cursor: grab;
+  }
+  .rev-track::-webkit-scrollbar { display: none; }
+  .rev-track.grabbing{cursor:grabbing; scroll-snap-type: none;} /* Disable snap while dragging */
+  
   .rcard{
-    flex:0 0 clamp(280px,80vw,400px);background:#fff;border:1px solid var(--line);border-radius:var(--r);
-    padding:34px;display:flex;flex-direction:column;gap:18px;
+    flex:0 0 clamp(280px,80vw,400px); background:#fff; border:1px solid var(--line); border-radius:var(--r);
+    padding:34px; display:flex; flex-direction:column; gap:18px;
     transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;
+    scroll-snap-align: center;
+  }
+  @media(min-width: 980px) {
+    .rcard { scroll-snap-align: start; }
   }
   .rcard:hover{transform:translateY(-8px);box-shadow:0 24px 50px -15px rgba(42,32,38,.15);border-color:var(--berry-soft);}
-  .rcard .qt{width:38px;height:38px;color:var(--berry-soft)}
-  .rcard p{color:var(--ink);font-weight:400;font-size:1.02rem;line-height:1.6;flex:1}
-  .rcard .who{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+  .rcard .qt{width:38px;height:38px;color:var(--berry-soft); flex: none;}
+  
+  .rev-text-wrap {
+    flex: 1; /* Pushes the author info to the bottom symmetrically */
+    display: flex; flex-direction: column; align-items: flex-start;
+  }
+  .rcard p.rev-text {
+    color:var(--ink); font-weight:400; font-size:1.02rem; line-height:1.6;
+    display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
+    overflow: hidden; text-overflow: ellipsis; margin-bottom: 0; transition: all 0.3s;
+  }
+  .rcard p.rev-text.expanded { -webkit-line-clamp: unset; }
+  .btn-read-more {
+    background: none; border: none; color: var(--berry); font-weight: 700;
+    font-size: 0.85rem; padding: 0; margin-top: 10px; cursor: pointer; font-family: var(--sans); transition: color 0.3s;
+  }
+  .btn-read-more:hover { color: var(--berry-deep); text-decoration: underline; }
+
+  .rcard .who{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line); flex: none;}
   .rcard .av{width:46px;height:46px;border-radius:50%;background:var(--berry);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.3rem;font-weight:600;flex:none}
   .rcard .who b{font-size:.95rem;display:block;font-weight:700;}
   .rcard .who span{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;font-weight:600;}
@@ -507,6 +535,8 @@
   footer{background:#1d161b;color:rgba(255,255,255,.75);padding:60px 0 30px}
   .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
   .foot-brand{max-width:34ch}
+  .foot-brand .foot-brand-wrap { margin-bottom: 16px; align-items: center; }
+  .foot-brand .logo-img { height: 70px; display: block; }
   .foot-brand p{font-size:.95rem;font-weight:400}
   .foot-links{display:flex;gap:clamp(30px,6vw,80px);flex-wrap:wrap}
   .foot-col h5{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:16px}
@@ -900,7 +930,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <div class="fb brand" style="margin-bottom:16px;">
+        <div class="brand" style="margin-bottom:16px;">
           <img class="logo-img" src="https://github.com/agelmet/SFYRI/blob/main/Alexandra_logo.png?raw=true" alt="Αλεξάνδρα Σφυρή DDS">
           <div class="brand-text">
             <span class="brand-title" style="color:#fff;" data-el="Αλεξάνδρα Σφυρή" data-en="Alexandra Sfyri">Αλεξάνδρα Σφυρή</span>
@@ -1003,7 +1033,7 @@
   },{threshold:0.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
-  /* ---------- REVIEWS ---------- */
+  /* ---------- REVIEWS WITH READ MORE ---------- */
   var reviews=[
     {n:'ir gth', t:'Η γιατρός είναι πολύ λεπτομερής και εξαιρετικά καταρτισμένη ώστε να μπορεί να προσφέρει λύσεις στα προβλήματα που έχουν προκύψει στα δόντια ανά τα χρόνια, σε πολύ ικανοποιητικά κόστη. Πέρα απ\' την ίδια που είναι εξαιρετική, το ιατρείο είναι άριστο και προσβάσιμο σε άτομα που κινούνται με αμαξίδιο και το παρκάρισμα στη περιοχή είναι εύκολο.', te:'The doctor is very detailed and highly trained, able to offer solutions to dental problems that have arisen over the years, at very satisfactory costs. Beyond her being excellent, the clinic is superb, accessible to wheelchair users, and parking in the area is easy.'},
     {n:'ch kar', t:'Είχα την ευκαιρία να επισκεφτώ το νέο οδοντιατρείο της κυρίας Σφυρή στη Νέα Ιωνία και έμεινα εξαιρετικά ικανοποιημένος από την εμπειρία μου. Από την πρώτη στιγμή που μπήκα στο χώρο, εντυπωσιάστηκα από την καθαριότητα και την μοντέρνα αισθητική του ιατρείου. Η κυρία Σφυρή είναι μια άριστη επαγγελματίας με βαθιά γνώση στο αντικείμενό της. Παρέχει ένα πλήρες φάσμα οδοντιατρικών υπηρεσιών, από καθαρισμό και λεύκανση δοντιών μέχρι πιο εξειδικευμένες θεραπείες και χειρουργικές επεμβάσεις. Κατά την επίσκεψή μου, ένιωσα πως ήμουν σε καλά χέρια, καθώς με ενημέρωσε αναλυτικά για την κατάσταση των δοντιών μου και μου εξήγησε όλες τις διαθέσιμες επιλογές θεραπείας. Αυτό που ξεχωρίζει την κυρία Σφυρή είναι η προσέγγισή της στους ασθενείς. Είναι φιλική, προσιτή και δείχνει πραγματικό ενδιαφέρον για την άνεση και την ευημερία τους. Ο τρόπος με τον οποίο διαχειρίζεται τους φόβους και τις ανησυχίες των ασθενών της είναι πραγματικά αξιέπαινος. Επιπλέον, η τεχνολογία και ο εξοπλισμός που χρησιμοποιεί είναι τελευταίας γενιάς, κάτι που προσφέρει μια αίσθηση ασφάλειας και εμπιστοσύνης. Οι τιμές των υπηρεσιών είναι λογικές και ανταποκρίνονται στην ποιότητα της φροντίδας που παρέχεται. Συνοψίζοντας, συνιστώ ανεπιφύλακτα το οδοντιατρείο της κυρίας Σφυρή σε οποιονδήποτε αναζητά υψηλής ποιότητας οδοντιατρική φροντίδα στη Νέα Ιωνία. Πρόκειται για ένα εξαιρετικό μέρος όπου η υγεία των δοντιών σας βρίσκεται σε άριστα χέρια.', te:'I had the opportunity to visit Dr. Sfyri\'s new dental clinic in Nea Ionia and was extremely satisfied with my experience. From the moment I entered the space, I was impressed by the cleanliness and the modern aesthetics of the clinic. Dr. Sfyri is an excellent professional with deep knowledge in her field. She provides a full range of dental services, from cleaning and teeth whitening to more specialized treatments and surgeries. During my visit, I felt I was in good hands, as she informed me in detail about the condition of my teeth and explained all available treatment options. What distinguishes Dr. Sfyri is her approach to patients. She is friendly, approachable, and shows genuine interest in their comfort and well-being. The way she handles her patients\' fears and concerns is truly commendable. Additionally, the technology and equipment she uses are state-of-the-art, offering a sense of safety and trust. The service prices are reasonable and correspond to the quality of care provided. In summary, I highly recommend Dr. Sfyri\'s dental clinic to anyone seeking high-quality dental care in Nea Ionia. It is an excellent place where your dental health is in the best hands.'},
@@ -1011,7 +1041,7 @@
     {n:'Γερολυματος Νικήτας', enName: 'Nikitas Gerolymatos', t:'Παρά πολύ καλή οδοντίατρος σου εξηγεί τα πάντα σχολαστική με την δουλειά της και κυρίως επαγγελματίας Ο χώρος άψογος πεντακάθαρος !!! Με κλειστά μάτια μόνο εκεί !!!', te:'Very good dentist, she explains everything to you, meticulous with her work and above all a professional. The space is flawless, spotlessly clean !!! Blindly, only there !!!'},
     {n:'Δωρα Δαρζ', enName: 'Dora Darz', t:'Ο επαγγελματισμός και η εξυπηρέτηση σε άριστο επίπεδο! Ο χώρος πεντακάθαρος, προσεγμένος κ η Αλεξάνδρα εξαιρετικη!!', te:'Professionalism and service at an excellent level! The space is spotlessly clean, well-cared for, and Alexandra is exceptional!!'},
     {n:'dwra panagou', t:'Η επίσκεψή μου στο οδοντιατρείο της κα Σφυρή ήταν εξαιρετική από την αρχή μέχρι το τέλος. Η κα Σφυρή ήταν επαγγελματίας και ιδιαίτερα προσεκτική, εξηγώντας κάθε βήμα της διαδικασίας. Ο χώρος ήταν πολύ καθαρός και μοντέρνος, με τελευταίας τεχνολογίας εξοπλισμό. Η εμπειρία μου ήταν απολύτως θετική. Συνιστώ ανεπιφύλακτα το οδοντιατρείο της κα Σφυρή σε όλους!', te:'My visit to Dr. Sfyri\'s dental clinic was excellent from start to finish. Dr. Sfyri was professional and particularly careful, explaining every step of the process. The space was very clean and modern, with state-of-the-art equipment. My experience was absolutely positive. I highly recommend Dr. Sfyri\'s dental clinic to everyone!'},
-    {n:'Karachaliou Anastasia', t:'Λόγω σοβαρών θεμάτων που είχα με τα δόντια μου χρειαζόταν επειγόντως να βρω όχι απλά έναν καλό οδοντίατρο , αλλά έναν εξαιρετικά καταρτισμένο και υπομονετικό επιστήμονα. Και βρήκα την κα Σφυρή με ακριβώς όλα τα στοιχεία που χρειαζόμουν. …More', te:'Due to severe issues I had with my teeth, I urgently needed to find not just a good dentist, but a highly trained and patient scientist. And I found Dr. Sfyri with exactly all the qualities I needed.'},
+    {n:'Karachaliou Anastasia', t:'Λόγω σοβαρών θεμάτων που είχα με τα δόντια μου χρειαζόταν επειγόντως να βρω όχι απλά έναν καλό οδοντίατρο , αλλά έναν εξαιρετικά καταρτισμένο και υπομονετικό επιστήμονα. Και βρήκα την κα Σφυρή με ακριβώς όλα τα στοιχεία που χρειαζόμουν.', te:'Due to severe issues I had with my teeth, I urgently needed to find not just a good dentist, but a highly trained and patient scientist. And I found Dr. Sfyri with exactly all the qualities I needed.'},
     {n:'stella star', t:'Γρήγορη, άμεση,έχω γλιτώσει τα δοντακια μου στην κύρια Αλεξάνδρα! αναλυτική και πριν για το τι θα γίνει αλλά και μετά για την επουλωση και την σωστή συντήρηση!έχω κάνει από σφραγισματα μέχρι ορθοδοντική εργασια με άψογα αποτελέσματα!!! επίσης,το αισθημα σιγουριάς ότι εισαι σε καλα χέρια,Μ εκανε πιο άνετη και χαλαρη!με κλειστά μάτια!!!', te:'Fast, direct, I have saved my teeth thanks to Ms. Alexandra! Detailed both beforehand about what will happen, and afterwards for healing and proper maintenance! I\'ve done everything from fillings to orthodontic work with flawless results!!! Also, the feeling of certainty that you are in good hands made me more comfortable and relaxed! With closed eyes!!!'},
     {n:'Dimitris', t:'Επισκέφτηκα την οδοντίατρο κ Σφυρή Αλεξάνδρα για εξαγωγη φρονιμίτη, μετά απο έρευνα στη google, και έμεινα απόλυτα ικανοποιημένος απο το αποτέλεσμα. Μεθοδική και επαγγελματίας. Τη συστήνω ανεπιφύλακτα. Επίσης ο χώρος πεντακάθαρος, και σύγχρονος.', te:'I visited dentist Ms. Alexandra Sfyri for a wisdom tooth extraction, after researching on Google, and I was completely satisfied with the result. Methodical and professional. I highly recommend her. Also, the space is spotlessly clean and modern.'},
     {n:'Agg Bele', t:'Εξαιρετική δουλειά! Έκανα απονεύρωση και καθαρισμό και έμεινα πλήρως ικανοποιημένη. Προσιτές τιμές, πολύ όμορφο περιβαλλον και η Αλεξάνδρα γλυκύτατη. Το συστήνω ανεπιφύλακτα!!!!', te:'Excellent work! I had a root canal and cleaning and was completely satisfied. Affordable prices, very beautiful environment, and Alexandra is super sweet. I highly recommend it!!!!'},
@@ -1019,20 +1049,42 @@
     {n:'Dimi Del', t:'Η ποιότητα των υπηρεσιών, η καθαριότητα του χώρου καθώς και η φιλική εξυπηρέτηση βρίσκονται σε πολύ υψηλό επίπεδο. Μεγάλο πλεονέκτημα και οι ιδιαίτερα ανταγωνιστικές τιμές. Από τις καλύτερες επαγγελματίες του χώρου', te:'The quality of services, the cleanliness of the space, as well as the friendly service are at a very high level. A big advantage is also the highly competitive prices. One of the best professionals in the field.'}
   ];
 
+  window.toggleRev = function(btn, textId) {
+    var p = document.getElementById(textId);
+    var isExpanded = p.classList.contains('expanded');
+    var lang = document.documentElement.lang;
+    if(isExpanded) {
+      p.classList.remove('expanded');
+      btn.innerText = lang === 'en' ? 'Read more' : 'Διαβάστε περισσότερα';
+    } else {
+      p.classList.add('expanded');
+      btn.innerText = lang === 'en' ? 'Show less' : 'Λιγότερα';
+    }
+  };
+
   var track=document.getElementById('revTrack');
   function starsSVG(){return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>';}
+  
   function buildReviews(){
     var lang=document.documentElement.lang;
     track.innerHTML='';
-    reviews.forEach(function(r){
+    reviews.forEach(function(r, i){
       var txt = lang==='en' ? r.te : r.t;
       var name = (lang==='en' && r.enName) ? r.enName : r.n;
       var label = lang==='en' ? 'Verified Google review' : 'Επιβεβαιωμένη κριτική Google';
+      var isLong = txt.length > 220;
+      var btnText = lang === 'en' ? 'Read more' : 'Διαβάστε περισσότερα';
+      
+      var textHtml = '<div class="rev-text-wrap">' +
+                     '<p class="rev-text" id="rev-txt-'+i+'">' + txt + '</p>' +
+                     (isLong ? '<button class="btn-read-more" onclick="toggleRev(this, \'rev-txt-'+i+'\')" data-el="Διαβάστε περισσότερα" data-en="Read more">' + btnText + '</button>' : '') +
+                     '</div>';
+
       var card=document.createElement('div');
       card.className='rcard';
       card.innerHTML=
         '<svg class="qt" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a4 4 0 0 0-4 4v6h6v-6H4a2 2 0 0 1 2-2h4V7zm10 0h-4a4 4 0 0 0-4 4v6h6v-6h-2a2 2 0 0 1 2-2h2V7z"/></svg>'+
-        '<p>'+txt+'</p>'+
+        textHtml +
         '<div class="who"><div class="av">'+name.charAt(0)+'</div><div><b>'+name+'</b><span>'+starsSVG()+label+'</span></div></div>';
       track.appendChild(card);
     });
