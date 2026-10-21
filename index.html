@@ -18,7 +18,7 @@
 <meta property="og:title" content="Αλεξάνδρα Σφυρή DDS — Εξειδικευμένη Εμφυτευματολογία & Σύγχρονη Οδοντιατρική">
 <meta property="og:description" content="Εξατομικευμένη οδοντιατρική φροντίδα με εξειδίκευση στην εμφυτευματολογία από το New York University. Νέα Ιωνία, Παραδείσου 19.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://raw.githubusercontent.com/agelmet/SFYRI/624754b3882a63aa1bd3ec57fdc477113187ac97/unnamed-69.jpg">
+<meta property="og:image" content="https://sfyridentalcare.gr/assets/img/alexandra-sfyri-odontiatros-nea-ionia-portreto-og.jpg">
 <style id="advon-fonts">/* fonts served from this site (was Google Fonts) */
 @font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:300;src:url(assets/fonts/manrope-greek-300-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;}
 @font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:300;src:url(assets/fonts/manrope-latin-300-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
@@ -226,7 +226,7 @@ h1,h2,h3,h4,h5{overflow-wrap:anywhere}
     min-height: 100svh;
     display: flex;
     align-items: center;
-    background: url('unnamed-2.png') no-repeat center center;
+    background: url('assets/img/alexandra-sfyri-odontiatros-nea-ionia-iatreio-odontiatriki-edra-2000.webp') no-repeat 30% center;
     background-size: cover;
     overflow: hidden;
   }
@@ -605,6 +605,23 @@ h1,h2,h3,h4,h5{overflow-wrap:anywhere}
   .fab:hover{background:var(--berry-deep); transform:translateY(-4px) scale(1.05); box-shadow:0 24px 50px -12px rgba(160,51,109,1);}
   .fab svg{width:20px;height:20px}
 
+
+  /* photos v3 (21 Oct 2026): the client's own photos only, every photo whole */
+  @media(max-width:760px){.hero{background-image:url('assets/img/alexandra-sfyri-odontiatros-nea-ionia-iatreio-odontiatriki-edra-1200.webp')}}
+  .about-photo .imgwrap{aspect-ratio:1/1}
+  .about-photo .imgwrap.second{position:absolute;top:-30px;right:-30px;width:40%;aspect-ratio:1/1;border:6px solid #fff;z-index:2;box-shadow:0 24px 50px -18px rgba(60,20,40,.45)}
+  .gal-rows{display:flex;flex-direction:column;gap:18px}
+  .gal-row{display:flex;gap:18px}
+  .gal-rows .gal-item{flex:var(--r) 1 0;aspect-ratio:var(--r);height:auto}
+  .gal-rows .gal-item img{height:100%;object-fit:contain;background:var(--greige)}
+  @media(max-width:980px){.about-photo .imgwrap.second{top:-20px;right:0;width:36%}}
+  @media(max-width:640px){
+    .gal-rows,.gal-row{gap:10px}
+    .gal-rows .gal-item{border-radius:12px}
+    .gal-row{flex-wrap:wrap}
+    .gal-row .gal-item:first-child{flex:1 1 100%}
+  }
+
   /* RESPONSIVE */
   @media(max-width:980px){
     .about-grid,.contact-grid{grid-template-columns:1fr;gap:46px}
@@ -739,8 +756,11 @@ h1,h2,h3,h4,h5{overflow-wrap:anywhere}
 <section class="about pad" id="about">
   <div class="wrap about-grid">
     <div class="about-photo reveal">
-      <div class="imgwrap zoomable" data-full="unnamed-69.jpg">
-        <img src="unnamed-69.jpg" alt="Αλεξάνδρα Σφυρή, Χειρουργός Οδοντίατρος">
+      <div class="imgwrap zoomable" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-portreto-2000.webp">
+        <img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-portreto-1200.webp" width="1200" height="1200" alt="Αλεξάνδρα Σφυρή, Χειρουργός Οδοντίατρος στη Νέα Ιωνία">
+      </div>
+      <div class="imgwrap second zoomable" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-portreto-iatreio-2000.webp">
+        <img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-portreto-iatreio-1200.webp" width="1200" height="1200" loading="lazy" alt="Η οδοντίατρος Αλεξάνδρα Σφυρή στο ιατρείο της">
       </div>
       <div class="badge">
         <svg viewBox="0 0 100 100"><path d="M50 14c-13 0-22 7-26 7s-9-4-12-2c-4 3-2 14 1 28 3 13 5 39 13 39 6 0 6-20 11-20s5 20 11 20c8 0 10-26 13-39 3-14 5-25 1-28-3-2-8 2-12 2s-13-7-26-7z" fill="#a0336d"/></svg>
@@ -854,13 +874,22 @@ h1,h2,h3,h4,h5{overflow-wrap:anywhere}
       <span class="eyebrow" data-el="Το ιατρείο" data-en="The Practice">Το ιατρείο</span>
       <h2 data-el="Ένας χώρος με σύγχρονο εξοπλισμό και <em>ζεστό περιβάλλον</em>." data-en="A space with modern equipment and a <em>warm atmosphere</em>.">Ένας χώρος με σύγχρονο εξοπλισμό και <em>ζεστό περιβάλλον</em>.</h2>
     </div>
-    <div class="gal-grid reveal">
-      <div class="gal-item g1 zoomable" data-full="unnamed-2.png"><img src="unnamed-2.png" alt="Οδοντιατρική μονάδα και εξοπλισμός"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
-      <div class="gal-item g2 zoomable" data-full="unnamed-66.jpg"><img src="unnamed-66.jpg" alt="Χώρος αναμονής με άνετο καθιστικό"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
-      <div class="gal-item g3 zoomable" data-full="unnamed-68.jpg"><img src="unnamed-68.jpg" alt="Οδοντιατρική έδρα και σύγχρονος εξοπλισμός"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
-      <div class="gal-item g4 zoomable" data-full="unnamed-67.jpg"><img src="unnamed-67.jpg" alt="Γραφείο ενημέρωσης ασθενών"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
-      <div class="gal-item g5 zoomable" data-full="unnamed-73.jpg"><img src="unnamed-73.jpg" alt="Υποδοχή και χώρος αναμονής"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
-      <div class="gal-item g6 zoomable" data-full="unnamed-3.png"><img src="unnamed-3.png" alt="Γωνιά ανάπαυσης στον χώρο αναμονής"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+    <div class="gal-rows reveal">
+      <div class="gal-row">
+        <div class="gal-item zoomable" style="--r:1.5" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-odontiatriki-monada-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-odontiatriki-monada-1200.webp" width="1200" height="800" loading="lazy" alt="Η οδοντιατρική μονάδα του ιατρείου — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+        <div class="gal-item zoomable" style="--r:0.6667" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-grafeio-2-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-grafeio-2-1200.webp" width="800" height="1200" loading="lazy" alt="Το γραφείο ενημέρωσης ασθενών — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+        <div class="gal-item zoomable" style="--r:1.5" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-grafeio-1-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-grafeio-1-1200.webp" width="1200" height="800" loading="lazy" alt="Γραφείο ενημέρωσης και σχεδιασμού θεραπείας — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+      </div>
+      <div class="gal-row">
+        <div class="gal-item zoomable" style="--r:1.5" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-2-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-2-1200.webp" width="1200" height="800" loading="lazy" alt="Ο χώρος αναμονής με το καθιστικό — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+        <div class="gal-item zoomable" style="--r:0.6667" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-4-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-4-1200.webp" width="800" height="1200" loading="lazy" alt="Υποδοχή και χώρος αναμονής — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+        <div class="gal-item zoomable" style="--r:1.5" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-3-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-3-1200.webp" width="1200" height="800" loading="lazy" alt="Η είσοδος και ο χώρος υποδοχής — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+      </div>
+      <div class="gal-row">
+        <div class="gal-item zoomable" style="--r:1.5" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-1-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-1-1200.webp" width="1200" height="800" loading="lazy" alt="Φωτεινός χώρος αναμονής — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+        <div class="gal-item zoomable" style="--r:0.6667" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-5-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-5-1200.webp" width="800" height="1200" loading="lazy" alt="Γωνιά του χώρου αναμονής — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+        <div class="gal-item zoomable" style="--r:1.5" data-full="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-6-2000.webp"><img src="assets/img/alexandra-sfyri-odontiatros-nea-ionia-xoros-anamonis-6-1200.webp" width="1200" height="800" loading="lazy" alt="Καθιστικό στον χώρο αναμονής — Αλεξάνδρα Σφυρή, οδοντίατρος Νέα Ιωνία"><span class="zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4M11 8v6M8 11h6"/></svg></span></div>
+      </div>
     </div>
   </div>
 </section>
